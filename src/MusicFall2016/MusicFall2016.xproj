@@ -14,6 +14,7 @@
   </PropertyGroup>
   <PropertyGroup>
     <SchemaVersion>2.0</SchemaVersion>
+    <ApplicationInsightsResourceId>/subscriptions/5da3f0c6-a136-405d-885b-1135a9daec4e/resourcegroups/Default-ApplicationInsights-CentralUS/providers/microsoft.insights/components/MusicFall2016</ApplicationInsightsResourceId>
   </PropertyGroup>
   <ItemGroup>
     <DnxInvisibleContent Include="bower.json" />
