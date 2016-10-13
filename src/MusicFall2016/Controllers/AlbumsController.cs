@@ -1,9 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using MusicFall2016.Models;
+using Microsoft.EntityFrameworkCore;
+using System.Linq;
 
 // For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -20,8 +19,8 @@ namespace MusicFall2016.Controllers
         // GET: /<controller>/
         public IActionResult Index()
         {
-            var albums = _context.Albums.ToList();
-            return View();
+            var albums =  _context.Albums.Include(a => a.Artist).Include(g => g.Genre).ToList();
+            return View(albums);
         }
     }
 }
