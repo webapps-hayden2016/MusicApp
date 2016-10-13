@@ -19,7 +19,7 @@ namespace MusicFall2016.Controllers
         // GET: /<controller>/
         public IActionResult Index()
         {
-            var albums =  _context.Albums.Include(a => a.Artist).Include(g => g.Genre).ToList();
+            var albums =  _context.Albums.ToList();
             return View(albums);
         }
     }
