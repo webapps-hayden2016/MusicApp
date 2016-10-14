@@ -1,4 +1,4 @@
- # Music Fall 2016
+# Music Fall 2016
 
 ##Starter code for ASP.NET Core MVC assignment
 
