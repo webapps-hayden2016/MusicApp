@@ -4,7 +4,7 @@
 
 After cloning this repo, it is necessary to build the database. Use the Package Manager Console for this. Since the project already has the initial migration included it is only necessary to update the database.
 
-    PM> update database
+    PM> update-database
 
 (This commands might generate errors: `Project "Default" is not found`)
 
