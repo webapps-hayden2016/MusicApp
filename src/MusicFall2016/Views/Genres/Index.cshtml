@@ -1,0 +1,24 @@
+﻿@model IEnumerable<MusicFall2016.Models.Genre>
+@{
+    ViewData["Title"] = "Genres";
+}
+<h2>Genre List</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Genre</th>
+        </tr>
+    </thead>
+    @foreach (var genre in Model)
+    {
+        <tr>
+            <td>@genre.Name</td>
+
+        </tr>
+    }
+</table>
+<div>
+    <a href="/Genres/Create" class="btn btn-danger">Add Another</a>
+    <a href="/Home" class="btn btn-default">Return to Homepage</a>
+</div>
