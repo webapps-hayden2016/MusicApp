@@ -32,6 +32,33 @@ namespace MusicFall2016.Controllers
             return View();
         }
 
+        [HttpPost]
+        public IActionResult Create(Album album)
+        {
+            ViewBag.Genre = new SelectList(_context.Genres, "GenreID", "Name");
+            ViewBag.Artists = new SelectList(_context.Artists, "ArtistID", "Name");
+
+            if (ModelState.IsValid)
+            {
+                var artist = (from c in _context.Artists
+                              where c.ArtistID == album.ArtistID
+                              select c).First();
+                album.Artist = artist;
+                _context.Albums.Add(album);
+                _context.SaveChanges();
+                return RedirectToAction("Index");
+            }
+
+            return View();
+        }
+
+        public IActionResult Delete(Album album)
+        {
+            _context.Albums.Remove(album);
+
+            return RedirectToAction("Index");
+        }
+
 
 
     }
