@@ -38,5 +38,12 @@ namespace MusicFall2016.Controllers
             }
             return View(artist);
         }
+
+        public IActionResult Delete(Artist artist)
+        {
+            _context.Artists.Remove(artist);
+
+            return RedirectToAction("Index");
+        }
     }
 }

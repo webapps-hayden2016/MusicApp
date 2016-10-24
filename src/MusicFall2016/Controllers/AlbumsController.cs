@@ -40,10 +40,7 @@ namespace MusicFall2016.Controllers
 
             if (ModelState.IsValid)
             {
-                var artist = (from c in _context.Artists
-                              where c.ArtistID == album.ArtistID
-                              select c).First();
-                album.Artist = artist;
+
                 _context.Albums.Add(album);
                 _context.SaveChanges();
                 return RedirectToAction("Index");
@@ -52,14 +49,64 @@ namespace MusicFall2016.Controllers
             return View();
         }
 
-        public IActionResult Delete(Album album)
+        public IActionResult Delete(int? id)
         {
+            if (id == null)
+            {
+                return RedirectToAction("Index");
+            }
+
+            Album album = _context.Albums.Single(m => m.AlbumID == id);
             _context.Albums.Remove(album);
+            _context.SaveChanges();
 
             return RedirectToAction("Index");
         }
 
+        public IActionResult Edit(int? id)
+        {
+            var albumx = _context.Albums.Single(m => m.AlbumID == id);
+            ViewBag.AlbumTitle = albumx.Title;
+            ViewBag.Genre = new SelectList(_context.Genres, "GenreID", "Name");
+            ViewBag.Artists = new SelectList(_context.Artists, "ArtistID", "Name");
+            if (id == null)
+            {
+                return NotFound();
+            }
 
+            var album = _context.Albums.Single(m => m.AlbumID == id);
+            if (album == null)
+            {
+                return NotFound();
+            }
+            return View(album);
+        }
+
+        [HttpPost]
+        public IActionResult Edit(int id, Album album)
+        {
+            ViewBag.Genre = new SelectList(_context.Genres, "GenreID", "Name");
+            ViewBag.Artists = new SelectList(_context.Artists, "ArtistID", "Name");
+
+            ViewBag.AlbumTitle = album.Title;
+            if(id != album.AlbumID)
+            {
+                return RedirectToAction("Index");
+            }
+            else if (ModelState.IsValid)
+            {
+                _context.Albums.Update(album);
+                _context.SaveChanges();
+
+                return RedirectToAction("Index");
+            }
+            return View(album);
+        }
+
+        //public IActionResult Details(int? id)
+        //{
+        //    ViewBag.AlbumTitle = 
+        //}
 
     }
 }

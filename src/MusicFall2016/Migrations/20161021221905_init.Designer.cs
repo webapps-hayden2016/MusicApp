@@ -8,8 +8,8 @@ using MusicFall2016.Models;
 namespace MusicFall2016.Migrations
 {
     [DbContext(typeof(MusicDbContext))]
-    [Migration("20161013041450_initdb")]
-    partial class initdb
+    [Migration("20161021221905_init")]
+    partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
